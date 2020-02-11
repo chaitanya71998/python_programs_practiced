@@ -1,0 +1,34 @@
+import textwrap
+line_len = int(input())
+list_of_words = input()
+t = textwrap.wrap(list_of_words,line_len)
+#print(t)
+result = []
+for i in t[:-1]:
+    k = i.split()
+    no_of_words = len(k)
+    #print(no_of_words)
+    if no_of_words ==1:
+        result.append(i.ljust(line_len))
+    else:
+        words_len=0
+        no_of_words = len(k)-1
+        for word in k:
+            words_len+=len(word)
+        #print(line_len,words_len)
+        spaces_remained  =line_len-words_len
+        #print(spaces_remained)
+        try:
+            align_sp,extra = divmod(spaces_remained,no_of_words)
+        except ZeroDivisionError:
+            pass
+        #print(align_sp,extra)
+        for m in range(extra):
+            k[m]+=' '
+        result.append((' '*align_sp).join(k))
+result.append((t[-1]+' ').ljust(line_len))
+
+print('\n'.join(result))
+            
+        
+    
